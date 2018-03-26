@@ -10,7 +10,7 @@ public class App extends  JFrame
 	JTextField txf_email;
 	JPasswordField senha;
 	JButton btn_entrar, btn_cadastrar;
-	
+	About aboutscreen;
 	
 	public App() {
 		super("RPM Mechanical");
@@ -19,11 +19,12 @@ public class App extends  JFrame
 		
 	ImageIcon logo = new ImageIcon("Logo_33.jpg");
 	
-	 screen.setBackground(Color.white);
+	 screen.setBackground(Color.WHITE);
 	//instanciando e definido a posicao do logo
 	 lbl_logo = new JLabel(logo);
 	 lbl_logo.setBounds(60, -60, 100, 100);
 	 lbl_logo.setSize(500,500);	
+	 
 	//instanciando os elementos
 	lbl_email = new JLabel("E-mail: ");
 	lbl_senha = new JLabel("Senha: ");
@@ -40,17 +41,33 @@ public class App extends  JFrame
 	btn_entrar.setBounds(148, 415, 150, 40);
 	btn_cadastrar.setBounds(315, 415, 150, 40);
 	
+	btn_entrar.setBackground(Color.WHITE);
+	btn_cadastrar.setBackground(Color.WHITE);
+	
+	ImageIcon interrog = new ImageIcon("interrog.png");
+	interrog.setImage(interrog.getImage().getScaledInstance(25,25,100));
+	ImageIcon about_icon = new ImageIcon("about.png");
+	about_icon.setImage(about_icon.getImage().getScaledInstance(25,25,100));
+	
+	
 	JMenuBar bar = new JMenuBar();
 	setJMenuBar(bar);
-	JMenu about = new JMenu("Sobre");
-	bar.add(about);
+	bar.setBackground(Color.WHITE);	
+	JMenu help = new JMenu("Ajuda");
+	help.setIcon(interrog);
+	bar.add(help);
+	JMenuItem about = new JMenuItem("Sobre");
+	about.setIcon(about_icon);
+	help.add(about);
 	
 	
-	
+
 	about.addActionListener(
 			new ActionListener(){
 				public void actionPerformed(ActionEvent e) {
-					Inicial aboutscreen = new Inicial
+					aboutscreen = new About(null, "Sobre a RPM Mechanical", true);
+					aboutscreen.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					aboutscreen.setVisible(true);
 				}
 			});
 	
@@ -72,21 +89,7 @@ public class App extends  JFrame
 	
     public static void main( String[] args )
     {
-    	AboutScreen app1 = new AboutScreen();
-    	app1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	App app = new App();
     	app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
-    private  AboutScreen {
-		super("Sobre RPM Mechanical");
-		Container screen = getContentPane();
-		screen.setLayout(null);
-		
-		JLabel info = new JLabel("RPM Mechanical \n "
-				+ "Version: 1.0 /n Projeto criado e desenvolvido por: "
-				+ "3IIA Turma: B");
-		
-		setSize(500,500);
-		setVisible(true);
 }
